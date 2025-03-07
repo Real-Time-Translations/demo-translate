@@ -60,18 +60,14 @@ def transcribe_audio():
 			wf.setframerate(RATE)
 			wf.writeframes(audio_buffer.tobytes())
 
-		start_time = time.time()
-
 		result = model.transcribe(
 			"temp_audio.wav",
 			temperature=0,
 			fp16=torch.cuda.is_available(),
 			task="translate",
-			no_speech_threshold=0.3,
+			no_speech_threshold=0.7,
 			logprob_threshold=-1.0
 		)
-
-		end_time = time.time()
 
 		recognized_text = result['text'].strip()
 		if recognized_text:
