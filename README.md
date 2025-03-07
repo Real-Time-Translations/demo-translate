@@ -5,5 +5,5 @@ pactl list short source
 
 Listen for the output
 
- parecord --device=<device> output.wav
+parecord --device=<device> output.wav
 
